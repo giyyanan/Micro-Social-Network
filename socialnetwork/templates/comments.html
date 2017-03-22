@@ -1,0 +1,12 @@
+
+<div class="list-group-item">
+	<div>
+		{{comment.user.get_full_name}} .  <em>{{comment.datetime}}</em>
+	</div>
+	<img style="height: 50px;width: 50px;" src = "{% url 'profile_pic' comment.user %}" alt="No Image"/ >
+	<span style="word-wrap:break-word;">
+		{{comment.comment}}
+	</span>
+	<input type="hidden" class="comment_post_id" value="{{comment.post.id}}"/>
+</div>
+

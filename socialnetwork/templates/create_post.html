@@ -1,0 +1,19 @@
+{%block content%}
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8 center-block">
+
+		<form method="post"  class = "form-inline center-block" action="{% url 'create' %}">
+		{% for field in Post_form.visible_fields %}
+			{{field}}
+		{% endfor %}
+			<!--<input type='text' style ="width:93%;" class="form-control center-block" placeholder="Whats up" name='post_message' maxlength="160"/>-->
+			<input type="submit" class = "btn btn-info vcenter" value="Post"/>
+			{% csrf_token %}
+		</form>
+	</div>
+	<div class="col-md-2">
+	</div>
+</div>
+{%endblock%}

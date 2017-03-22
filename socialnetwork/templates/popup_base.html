@@ -1,0 +1,26 @@
+<!--extended from the private-to-do list example-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Social Network!!!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body onload="#login_modal">
+	<div class="container-fluid">
+		<div class="modal show" id="login_modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					{%block content%}
+					{%endblock%}
+				</div>
+			</div>
+		</div>
+	</body>
+	</html>

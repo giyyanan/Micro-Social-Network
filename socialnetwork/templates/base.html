@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Social Network!!! </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/socialnetwork.css" />
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/socialnetwork.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body onload="startApp()">
+
+	<div class="container-fluid">
+		<div class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-brand col-md-5">
+					<p>{{User.get_full_name}}</p>
+				</div>
+				<div class="navbar-header navbar-center" >
+					<div class ="">
+						<p class="navbar-brand text-center">Social Network</p>
+					</div>
+				</div>
+				<input type="hidden" id="page_view" value="{{view}}"/>
+				<ul class="nav navbar-nav navbar-right">
+
+					{% if view != "home" %}
+					<li>
+						<form method="get" action="{% url 'home' %}">
+							<button class="btn btn-default btn-medium" value ="Logout">Home</button>
+						</form>
+					</li>
+					{% endif %}
+					{% if view == "home" %}
+					<li>
+						<form method="get" action="{% url 'view_profile' %}">
+							<button class="btn btn-default btn-medium" value ="Logout">Profile</button>
+						</form>
+					</li>
+					{% endif %}
+					{% if view == "profile" %}
+					<li>
+						<form method="get" action="{% url 'edit_profile' %}">
+							<button class="btn btn-default btn-medium" value ="Logout">Edit Profile</button>
+						</form>
+					</li>
+					{% endif %}
+					<li>
+						<form method="get" action="{% url 'followers_stream' %}">
+							<button class="btn btn-default btn-medium" value ="Logout">Followers Posts</button>
+						</form>
+					</li>
+					<li>
+						<form method="get" action="{% url 'logout' %}">
+							<button class="btn btn-default btn-medium" value ="Logout">Logout</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% block content %}
+		{% endblock%}
+		{{comm}}
+		
+	</div>
+	<div id="comment_create" class="list-group-item" style="display:none;width:auto;">
+		<form name="comment_creation" method="post">
+			<input type='text' style ="width:88%;display:inline-block;" class="form-control center-block" placeholder="add your comment" name='post_message' maxlength="160" id="comment_text"/>
+			<input type="submit" id="postComment" class = "btn btn-info vcenter" value="comment"/>
+			<input type="hidden" name="postId" value="" id="comment_post_id"/>
+			{% csrf_token %}
+		</form>
+	</div>
+	<!--<div style="position: absolute;top:10px;width:100%;text-align: center" id="new_posts" class="New_Posts">
+		<span style="border-radius: 5px;border: 1px solid white;padding:5px; " class="btn-primary">
+			<span id="new_posts_count">0</span>
+			<span>New Posts</span>
+		</span>
+	</div>-->
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Python compiled files
+*.pyc
+
+# Editor backup files
+*~
+
+# SQLite database file
+db.sqlite3
+
+# config ini file
+*.ini

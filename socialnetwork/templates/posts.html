@@ -1,0 +1,49 @@
+{% for post in Posts %}
+<div class="row">
+	<ul class="list-group">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+
+			<li class="list-group-item"  id="display_post_{{post.id}}">
+				<div class="post_div">
+					{% if view == "profile" %}
+					{{post.user.get_full_name}}
+					{% else %}
+					<a class="btn btn-link" href="/profile/{{post.user}}">@{{post.user.get_full_name}}</a> 	
+					{% endif %} 
+					{%if not post.user.id in follows and view == 'home' and post.user.id != User.id%}
+					<form method="post" action="{% url 'follow' post.user%}">
+						<input type="button" class="btn btn-primary btn-medium" value ="Follow"/>
+						{% csrf_token %}
+					</form>
+					{%elif post.user.id in follows and view == 'home' and post.user.id != User.id%}
+					<form method="post" action="{% url 'unfollow' post.user%}">
+						<button class="btn btn-warning btn-medium" value ="UnFollow">UnFollow</button>
+						{% csrf_token %}
+					</form>
+
+					{%endif%}
+					. <em>{{post.datetime}}</em>
+				</div>
+				<img style="height: 50px;width: 50px;" src = "{% url 'profile_pic' post.user %}" alt="No Image"/ >
+				<span style="word-wrap:break-word;">
+					{{post.post}}
+				</span>
+				<div id="comments_container" class="panel panel-default">
+					Comments : 
+					<div class="comments_div">
+					{%for comment in post.get_comments_posts%}
+					{%include 'comments.html'%}
+					{%endfor%}
+					</div>
+				</div>
+				<input class = "post_id" type="hidden" value="{{post.id}}"/>
+				<input type="button" class="btn btn-info" onclick="" id="create_comment" value="Add Comment" post="{{post.id}}"/>
+			</li>
+		</div>
+		<div class="col-md-2">
+		</div>
+	</ul>
+</div>
+{% endfor %}

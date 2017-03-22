@@ -1,0 +1,17 @@
+{% extends "popup_base.html" %}
+{%block content%}
+
+<div class="modal-header">
+	{% for error in form.non_field_errors %}
+	<h4 class="text-danger">
+		{{ error }}
+	</h4>
+	{% endfor %}
+
+	<h3 class="text-primary">
+		Register for the Social Network :
+	</h3>
+</div>
+{% include 'user_fields.html' %}
+</div>
+{%endblock%}

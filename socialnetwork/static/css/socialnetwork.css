@@ -1,0 +1,7 @@
+#id_post,#id_comment{
+	width : 93%;
+	border-radius: 4px;
+}
+#id_post:-webkit-input-placeholder::before {
+	content:"Whats up";
+}
